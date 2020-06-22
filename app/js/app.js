@@ -1,9 +1,19 @@
 $(document).ready(function(){
     getCanciones();
+    iniciarReproductor();
 });
 
 var audio = document.getElementById('player');
 var musica;
+
+function iniciarReproductor(){
+    $('#shuffle').click(function(){
+        $('#playlist').empty();
+        console.log(shuffle(musica.canciones));
+        getLista(musica);
+        playCancion(0);
+    })
+}
 
 function getCanciones(){
     $.getJSON("js/app.json", function(mjson){
@@ -42,14 +52,18 @@ function getLista(musica){
 
 
 function scheduleCancion(id){
-  audio.onended = function(){
-
-   console.log("termino la canción");
-   playCancion(parseInt(id)+1);
-
+    audio.onended = function(){
+        console.log("termino la canción");
+        playCancion(parseInt(id)+1);
+    }
 }
 
+function shuffle(array){
+    for(var random, temp, position = array.length; position; random = Math.floor(Math.random()*position), temp = array[--position], array[position] = array[random], array[random] = temp);
+    return array;
 }
+
+
 
 
 
