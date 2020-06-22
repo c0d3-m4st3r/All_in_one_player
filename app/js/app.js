@@ -8,6 +8,6 @@ var musica;
 function getCanciones(){
     $.getJSON("js/app.json", function(mjson){
         musica = mjson;
-        console.log(music);
+        console.log(musica);
     });
 }
