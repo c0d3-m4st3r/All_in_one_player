@@ -14,9 +14,19 @@ function getCanciones(){
 
 function playCancion(id){
     console.log(id);
-    $('#img-album').attr('src', musica.canciones[id].rutaImagen);
-    $('#player').attr('src', musica.canciones[id].rutaAudio);
+    var long = musica.canciones;
+    if(id >= long.length){
+       console.log("se acabó");
+       audio.pause();
+    }else{
+     $('#img-album').attr('src', musica.canciones[id].rutaImagen);
+     $('#player').attr('src', musica.canciones[id].rutaAudio);
     audio.play();
+    console.log("Hay más canciones");
+    scheduleCancion(id);
+
+}
+    
 }
 
 function getLista(musica){
@@ -29,3 +39,21 @@ function getLista(musica){
         playCancion(cancionSeleccionada);
     })
 }
+
+
+function scheduleCancion(id){
+  audio.onended = function(){
+
+   console.log("termino la canción");
+   playCancion(parseInt(id)+1);
+
+}
+
+}
+
+
+
+
+
+
+
