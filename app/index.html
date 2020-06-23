@@ -1,34 +1,58 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-	<title>All_in_one_player</title>
-</head>
-<body>
-
-<div clas="container">
-	<div class="row">
-		<div class="col-md-4 col-md-offset-4">
-			<img src="" width="300" alt="">
-		</div>
-	</div>
-    <div class="row">
-    	<div class="col-md-6">
-    		<div align="center"><img id="img-album" src="img/music.png" width="270" alt="300"></div>
-    		<div align="center"><audio id="player" controls=""></audio></div>
-		</div>
-		<div class="col-md-6">
-			<button class="btn btn-success" id="shuffle"><i class="fa fa-random"></i></button>
-			<ul class="list-group" id="playlist"></ul>
-    	</div>
-    </div>
-</div>   
-    		
-<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-<script src="https://use.fontawesome.com/259583f9fc.js"></script>
-<script src="js/app.js"></script>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+		<title>All_in_one_player</title>
+	</head>
+	<body>
+		<style>
+			body{
+				background-color: black;
+			}
+		</style>
+		<div clas="container">
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4">
+					<img src="" width="300" alt="">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div align="center"><img id="img-album" src="img/music.png" width="270" alt="300"></div>
+					<div align="center"><audio id="player" controls=""></audio></div>
+				</div>
+				<div class="col-md-4">
+					<div align="center" id="tituloPlaylist" style="color:white">
+						<span id="tituloPlaylist"></span>
+					</div>
+					<div align="right"> 
+						<button class="btn btn-danger" id="shuffle"><i class="fa fa-random"></i></button>	
+					</div>
+					
+					<ul class="list-group" id="playlist"></ul>
+				</div>
+				<div class="col-md-4">
+					<div align="center" style="color:white">
+						Listas de reproducciones
+					</div>
+					<div align="right">
+						<button class="btn btn-danger" id="newPlaylist">Nueva Playlist</button>
+					</div>
+					<ul class="list-group" id="listasDisponibles">
+						<li class="list-group-item" id="-1" style="background-color: #696969; color: white;">
+							Todas las canciones
+						</li>
+					</ul>
+				</div>
+				
+			</div>
+		</div>   
+					
+		<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+		<script src="https://use.fontawesome.com/259583f9fc.js"></script>
+		<script src="js/app.js"></script>
+	</body>
 </html>
