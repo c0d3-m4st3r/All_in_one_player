@@ -112,6 +112,13 @@ function shuffle(array){
     return array;
 }
 
+
+
+
+
+
+//esta función es una prueba de código
+
 function ecualizador(){
 
 
