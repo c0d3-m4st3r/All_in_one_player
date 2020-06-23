@@ -1,0 +1,22 @@
+{
+    "videos":[
+        {
+            "id": 0,
+            "nombre": "720p HD Video Test",
+            "artista": "Youtube",
+            "rutaVideo": "videos/720p HD Video Test.mp4"
+        },
+        {
+            "id": 1,
+            "nombre": "[HD] 720p Test Video",
+            "artista": "Youtube",
+            "rutaVideo": "videos/[HD] 720p Test Video.mp4"
+        },
+        {
+            "id": 2,
+            "nombre": "Prueba de video",
+            "artista": "Youtube",
+            "rutaVideo": "videos/iPhone 11 Pro, prueba de vídeo (720p@60fps).mp4"
+        }
+    ]
+}
