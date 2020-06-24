@@ -2,6 +2,7 @@ $(function(){
     getInfo();
     iniciarReproductor();
     $('#newPlaylistModal').on('shown.bs.modal', guardaPlaylist());
+    $('#newSongModal').on('shown.bs.modal', guardaCancion());
 });
 
 var audio = document.getElementById('player');
@@ -75,7 +76,8 @@ function getCanciones(idPlaylist){
             }
             dropDown = dropDown + ' </div></div>';
                 if(musica.canciones[i].id == lista){
-                    botonFavoritos = '<div class="btn-group ml-auto"><button class="btn btn-danger favoritos" id="fav' + i + '"><i class="fa fa-star"></i></button>' + dropDown +'</div>';
+                    botonEliminar = '<button class="btn btn-danger eliminar" id="del' + i + '"><i class="fa fa-trash"></button>';
+                    botonFavoritos = '<div class="btn-group ml-auto"><button class="btn btn-danger favoritos" id="fav' + i + '"><i class="fa fa-star"></i></button>' + dropDown + botonEliminar + '</div>';
                     $('#playlist').append('<li class="list-group-item" style="background-color: #696969; color: white;" id="' + i + '"><div class="text_holder d-flex ">' + cancion.nombre + botonFavoritos + '</div></li>');   
                 } 
             });
@@ -151,6 +153,36 @@ function getCanciones(idPlaylist){
                 musica.listas[numeroLista].canciones.splice(i, 1);
             }
         });
+
+        if(listaEstaCancion.id == -1){
+            musica.canciones.forEach(function(cancion, i){
+                if(cancion.id == cancionEliminada){
+                    musica.canciones.splice(i, 1);
+                    musica.listas.forEach(function(lista, j){
+                        lista.canciones.forEach(function(cancionABuscar, k){
+                            if(cancionABuscar == cancion.id){
+                                lista.canciones.splice(k, 1);
+                            }
+                        })
+                    })
+                }  
+            }); 
+            musica.canciones.forEach(function(cancion, i){
+                if(cancion.id != i){
+                    musica.canciones[i].id--;
+                }
+            });
+            $.each(listaEstaCancion.canciones, function(i){
+                    musica.listas[0].canciones.splice(i, 1);
+            });
+            musica.canciones.forEach(function(cancion, i){
+                    musica.listas[0].canciones.push(cancion.id);
+            });
+            
+
+        }
+        
+
         console.log(musica);
         console.log(JSON.stringify(musica));
 
@@ -163,6 +195,10 @@ function getCanciones(idPlaylist){
             url: "/guardaJSON",
             success: function(response){
                 $(idCancion).remove();
+                if(listaEstaCancion.id == -1){ 
+                    $('#playlist').empty();
+                    getCanciones(-1);
+                }
             },
             error: function(err){
                 console.log("Error al eliminar: ", err);
@@ -231,10 +267,15 @@ function getListas(){
         
         console.log(listaEliminada);
 
-
-        $.each(musica.listas, function(i){    
-            if(musica.listas[i].id == listaEliminada){
+        musica.listas.forEach(function(lista, i){
+            if(lista.id == listaEliminada){
                 musica.listas.splice(i, 1);
+            }
+        });
+    
+        musica.listas.forEach(function(lista, i){
+            if(lista.id != (-i - 1)){
+                lista.id++;
             }
         });
 
@@ -250,6 +291,8 @@ function getListas(){
             url: "/guardaJSON",
             success: function(response){
                 $(idLista).remove();
+                $('#listasDisponibles').empty();
+                getListas();
             },
             error: function(err){
                 console.log("Error al eliminar: ", err);
@@ -303,7 +346,51 @@ function guardaPlaylist(){
                 console.log("Error al guardar: ", err);
             }
         });
-        
-
     });
 }
+    function guardaCancion(){
+        $('#enviarCancion').click(function(){
+            var nombre = $("#nombreSong").val();
+            var artista = $("#artistaCancion").val();
+            var audio = $("#rutaAudio").val();
+            if($("#rutaImagen").val() == ''){
+                imagen = "img/music.png";
+            }else{
+                var imagen = $("#rutaImagen").val();
+            }
+            var cont = 0;
+            console.log(nombre);
+            $.each(musica.canciones, function(){
+                cont++;
+            });
+            var cancion = {
+                "id": cont,
+                "nombre":nombre,
+                "artista": artista,
+                "rutaAudio": audio,
+                "rutaImagen": imagen
+            };
+            musica.canciones.push(cancion);
+            musica.listas[0].canciones.push(cont);
+            console.log(musica);
+            $.ajax({
+                type:"POST",
+                dataType:"json",
+                contentType: "application/json",
+                data: JSON.stringify(musica),
+                url: "/guardaJSON",
+                success: function(response){
+                    $("#nombreSong").val('');
+                    $("#artistaCancion").val('');
+                    $("#rutaAudio").val('');
+                    $("#rutaImagen").val('');
+                    $('#newSongModal').modal('hide');
+                    $('#playlist').empty();
+                    getCanciones(-1);
+                },
+                error: function(err){
+                    console.log("Error al guardar: ", err);
+                }
+            });
+        });
+    }

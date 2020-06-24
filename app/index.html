@@ -21,7 +21,51 @@
 				<div class="col-md-4">
 					<div align="center"><img id="img-album" src="img/music.png" width="270" alt="300"></div>
 					<div align="center"><audio id="player" controls=""></audio></div>
+					<div align="center">
+						<button type="button" class="btn btn-danger" style="color: white;" id="newSong" data-toggle="modal" data-target="#newSongModal">Nueva Canción</button>
+
+						<div class="modal fade" id="newSongModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog" >
+							  <div class="modal-content">
+								<div class="modal-header">
+								  <h5 class="modal-title" id="exampleModalLabel">Nueva Canción</h5>
+								  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								  </button>
+								</div>
+								<div class="modal-body">
+								  <div>
+									  <p>Copia la canción a la carpeta musica y las imágenes a la carpeta img, después añade la ruta empezando por la carpeta de tal manera: musica/example.mp3 o img/example.jpg</p>
+								  </div>
+									<form>
+									<div class="form-group" align="left">
+									  <label for="nombreSong">Nombre: </label>
+									  <input type="text" class="form-control" id="nombreSong">
+									</div>
+									<div class="form-group" align="left">
+										<label for="artistaCancion">Artista: </label>
+										<input type="text" class="form-control" id="artistaCancion">
+									  </div>
+									  <div class="form-group" align="left">
+										<label for="rutaAudio">Ruta del audio: </label>
+										<input type="text" class="form-control" id="rutaAudio">
+									  </div>
+									  <div class="form-group" align="left">
+										<label for="rutaImagen">Ruta de la carátula: </label>
+										<input type="text" class="form-control" id="rutaImagen">
+									  </div>
+								  </form>
+								</div>
+								<div class="modal-footer">
+								  <button type="button" class="btn btn-secondary" style="background-color: #696969;" data-dismiss="modal">Cerrar</button>
+								  <button type="button" class="btn btn-primary btn-danger" id="enviarCancion">Guardar Canción</button>
+								</div>
+							  </div>
+							</div>
+						  </div>
+					</div>
 				</div>
+			
 				<div class="col-md-4">
 					<div align="center" id="tituloPlaylist" style="color:white">
 						<span id="tituloPlaylist"></span>
