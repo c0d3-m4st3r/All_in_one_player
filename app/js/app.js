@@ -44,7 +44,52 @@ function playCancion(id){
     console.log("Hay más canciones");
     scheduleCancion(id);
 
-    }
+    var canvas = document.querySelector('canvas'),
+    canvasCtx = canvas.getContext('2d');
+    canvas.width = 400;
+    canvas.height = 200;
+    canvas.style.position = "relative";
+    WIDTH = canvas.width;
+    HEIGHT = canvas.height;
+
+    audioContext = new AudioContext(),
+    source = audioContext.createMediaElementSource(audio),
+    analyser = audioContext.createAnalyser();
+
+    source.connect(analyser);
+    analyser.connect(audioContext.destination);
+
+    analyser.fftSize = 256;
+    var bufferLengthAlt = analyser.frequencyBinCount;
+    console.log(bufferLengthAlt);
+    var dataArrayAlt = new Uint8Array(bufferLengthAlt);
+
+    canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
+
+    var drawAlt = function() {
+    drawVisual = requestAnimationFrame(drawAlt);
+
+    analyser.getByteFrequencyData(dataArrayAlt);
+
+    canvasCtx.fillStyle = 'rgb(0, 0, 0)';
+    canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
+
+    var barWidth = (WIDTH / bufferLengthAlt) * 2.5;
+    var barHeight;
+    var x = 0;
+
+    for(var i = 0; i < bufferLengthAlt; i++) {
+        barHeight = dataArrayAlt[i];
+        canvasCtx.fillStyle = 'rgb(' + (barHeight+100) + ',50,50)';
+        canvasCtx.fillRect(x,HEIGHT-barHeight/2,barWidth,barHeight/2);
+        x += barWidth + 1;
+        }
+      };
+
+      drawAlt();
+
+
+}
     
 }
 
@@ -97,10 +142,12 @@ function getCanciones(idPlaylist){
 
     $('#playlist li').click(function(){
         var cancionSeleccionada = $(this).attr('id');
+        $('#idReproduciendo').val(cancionSeleccionada);
         playCancion(cancionSeleccionada);
     });
 
     $('button.favoritos').click(function(){
+        audio.pause();
         var cancionFavoritaS = $(this).attr('id');
         cancionFavoritaS = cancionFavoritaS.replace('fav','');
         var cancionFavorita = parseInt(cancionFavoritaS);
@@ -118,7 +165,7 @@ function getCanciones(idPlaylist){
             dataType:"json",
             contentType: "application/json",
             data: JSON.stringify(musica),
-            url:"/guardaJSON",
+            url:"/guardaJSONAudio",
             success: function(response){
                 console.log("Response of update: ",response)
                 $.getJSON("js/app.json", function(mjson){
@@ -133,6 +180,7 @@ function getCanciones(idPlaylist){
     });
 
     $('button.eliminar').click(function(){
+        audio.pause();
         var cancionEliminadaS = $(this).attr('id');
         cancionEliminadaS = cancionEliminadaS.replace('del','');
         var cancionEliminada = parseInt(cancionEliminadaS);
@@ -192,7 +240,7 @@ function getCanciones(idPlaylist){
             dataType:"json",
             contentType: "application/json",
             data: JSON.stringify(musica),
-            url: "/guardaJSON",
+            url: "/guardaJSONAudio",
             success: function(response){
                 $(idCancion).remove();
                 if(listaEstaCancion.id == -1){ 
@@ -206,6 +254,7 @@ function getCanciones(idPlaylist){
         });
     });
     $('button.add').click(function(){
+        audio.pause();
         var cancionS = $(this).attr('id');
         cancionS = cancionS.replace('add','');
         var cancion = parseInt(cancionS);
@@ -223,7 +272,7 @@ function getCanciones(idPlaylist){
                 dataType:"json",
                 contentType: "application/json",
                 data: JSON.stringify(musica),
-                url:"/guardaJSON",
+                url:"/guardaJSONAudio",
                 success: function(response){
                     console.log("Response of update: ",response)
                     $.getJSON("js/app.json", function(mjson){
@@ -288,7 +337,7 @@ function getListas(){
             dataType:"json",
             contentType: "application/json",
             data: JSON.stringify(musica),
-            url: "/guardaJSON",
+            url: "/guardaJSONAudio",
             success: function(response){
                 $(idLista).remove();
                 $('#listasDisponibles').empty();
@@ -334,7 +383,7 @@ function guardaPlaylist(){
             dataType:"json",
             contentType: "application/json",
             data: JSON.stringify(musica),
-            url: "/guardaJSON",
+            url: "/guardaJSONAudio",
             success: function(response){
                 $('#nombrePlaylist').val('');
                 $('#newPlaylistModal').modal('hide');
@@ -378,7 +427,7 @@ function guardaPlaylist(){
                 dataType:"json",
                 contentType: "application/json",
                 data: JSON.stringify(musica),
-                url: "/guardaJSON",
+                url: "/guardaJSONAudio",
                 success: function(response){
                     $("#nombreSong").val('');
                     $("#artistaCancion").val('');
@@ -394,3 +443,4 @@ function guardaPlaylist(){
             });
         });
     }
+

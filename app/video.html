@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="shortcut icon" href="#" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <title>All_in_one_player</title>
+        <style type="text/css">
+            html,body{ background:black; }
+        </style>
+    
+    </head>
+    <body>														
+        <div class="container" align = "center">
+            <div class="row d-flex" align="center">
+                <h1 style= "color:white;">Reproductor de video</h1>
+                <div class="ml-auto">
+                    <div align="center" style="padding-top:20px;"><a class="btn btn-danger" href="http://localhost:8080">Volver al menú</a></div>
+                </div>
+            </div>
+            <div class="row align-items-center" style="padding-top: 100px;">
+                <div class="col-md-3">
+                    
+                        <button class="btn btn-danger" id="shuf"><i class="fa fa-random"></i></button> 
+                        <button type="button" class="btn btn-success" style="color: white;" id="newVideo" data-toggle="modal" data-target="#newVideoModal">Nuevo Vídeo</button>
+
+						<div class="modal fade" id="newVideoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog" >
+							  <div class="modal-content">
+								<div class="modal-header">
+								  <h5 class="modal-title" id="exampleModalLabel">Nuevo Vídeo</h5>
+								  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								  </button>
+								</div>
+								<div class="modal-body">
+								  <div>
+									  <p>Copia el video a la carpeta videos después añade la ruta empezando por la carpeta de tal manera: videos/example.mp4</p>
+								  </div>
+									<form>
+									<div class="form-group" align="left">
+									  <label for="nombreVideo">Nombre: </label>
+									  <input type="text" class="form-control" id="nombreVideo">
+									</div>
+									<div class="form-group" align="left">
+										<label for="artistaVideo">Artista: </label>
+										<input type="text" class="form-control" id="artistaVideo">
+									  </div>
+									  <div class="form-group" align="left">
+										<label for="rutaVideo">Ruta del video: </label>
+										<input type="text" class="form-control" id="rutaVideo">
+									  </div>
+								  </form>
+								</div>
+								<div class="modal-footer">
+								  <button type="button" class="btn btn-secondary btn-danger" data-dismiss="modal">Cerrar</button>
+								  <button type="button" class="btn btn-primary btn-success" id="enviarVideo">Guardar Vídeo</button>
+								</div>
+							  </div>
+							</div>
+						  </div>
+                    
+                    <ul  class="list-group" id="playVideos"></ul>
+                </div>
+                <div  class="col-md-3">
+                    <div  aling="center">
+                        <video width="600" height="400" id="video" controls muted autoplay preload="metadata" poster="img/movie-icon-which-is-designed-for-all-application-purpose-new-png_287896.jpg"></video>
+                        </div>
+                </div>                      
+            </div>
+        </div>
+            
+        
+
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>  
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> 
+            <script src="https://use.fontawesome.com/259583f9fc.js"></script>
+            <script src="js/video.js"></script>
+
+    </body>
+</html>
+
