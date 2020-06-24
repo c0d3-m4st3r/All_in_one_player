@@ -15,6 +15,10 @@ function iniciarReproductor(){
     })
 }
 
+
+var MEDIA_ELEMENT_NODES = new WeakMap();
+
+
 function getCanciones(){
     $.getJSON("js/app.json", function(mjson){
         musica = mjson;

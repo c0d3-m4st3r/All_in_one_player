@@ -14,6 +14,51 @@ var video = document.getElementById('video');
 var archivos;
 
 
+
+
+
+function PantallaCompleta(){
+
+
+var video = document.getElementById('video');
+
+if (!video.fullscreenElement) {
+      video.documentElement.requestFullscreen();
+  } else {
+    if (video.exitFullscreen) {
+      video.exitFullscreen(); 
+    }
+  }
+
+}
+
+function playPause(){
+
+if(video.paused){
+    video.play();
+}else{
+
+    video.pause();
+
+}
+}
+
+
+function stop(){
+
+video.pause();
+video.currentTime = 0;
+
+}
+
+
+function skip(value){
+
+video.currentTime += value;
+
+}
+
+
 function iniciarReproductor(){
     $('#shuf').click(function(){
         $('#playVideos').empty();
