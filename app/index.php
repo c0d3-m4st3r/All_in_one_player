@@ -1,7 +1,7 @@
 <?php
-// Desactivar toda notificación de error
+
 error_reporting(0);
-// Notificar solamente errores de ejecución
+
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 define("MAX_RESULTS", 15);
     
@@ -19,9 +19,6 @@ define("MAX_RESULTS", 15);
     }
          
 ?>
-
-
-
 
 
 <!DOCTYPE html>
@@ -69,6 +66,7 @@ define("MAX_RESULTS", 15);
           </div>
           <div class="col-auto">
             <input class="btn btn-primary mb-2" type="submit" name="submit" value="Busqueda">
+             <input class="btn btn-primary mb-2" type="submit" name="submit" value="Cancelar">
           </div>
         </div>
       </div>
@@ -84,7 +82,7 @@ define("MAX_RESULTS", 15);
                                          
               if (!empty($keyword))
               {
-        $apikey = 'AIzaSyD3NacZWKtTCx7krRKDkp5fZ5bSwbqChvA';
+              $apikey = 'AIzaSyD3NacZWKtTCx7krRKDkp5fZ5bSwbqChvA';
               $googleApiUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q='.$keyword.'&maxResults='.MAX_RESULTS.'&key='.$apikey;
 
                 $ch = curl_init();
@@ -120,6 +118,12 @@ define("MAX_RESULTS", 15);
       </div>
               <?php 
                     }
+                }else{
+
+
+                 $_POST['submit']="";
+                 $keyword="";
+
                 } 
            
             }

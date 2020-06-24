@@ -53,13 +53,6 @@ define("MAX_RESULTS", 15);
       <div class="col-md-6">
         <div aling="center">
         <video  id="video" controls muted autoplay preload="metadata"></video>
-        <div>
-          <button onclick="playPause()">&#9658;/||</button>
-          <button onclick="stop()">&#9726;/||</button>
-          <button onclick="skip(-10)">&lt;&lt;/||</button>
-          <button onclick="skip(10)">&#9658;/||</button>
-          <button id="Pantalla" onclick="PantallaCompleta()">Video Pantalla Completa</button>
-        </div>
         </div>
 
 
