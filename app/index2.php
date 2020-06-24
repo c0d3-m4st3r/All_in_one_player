@@ -31,28 +31,21 @@ define("MAX_RESULTS", 15);
 	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 	<title>All_in_one_player</title>
     <style type="text/css">
-	html,body{height:100vh; background:#d9d9d9; }
+	html,body{ background:#d9d9d9; }
   </style>
   
 </head>
 <body>														
 </div>
-<div  style="display: inline-block; text-align: right; width: 100%" class="container">
 
-	</font>
-
-</p>
-
-
-
-<div  aling="center" class="col-md-6">
+<div style=" position: sticky; left: 900px" class="col-md-4">
         <button class="btn btn-success" id="shuf"><i class="fa fa-random"></i></button> 
-              <ul class="list-group" id="playVideos"></ul>
+              <ul  class="list-group" id="playVideos"></ul>
     </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div aling="center">
-        <video  id="video" controls muted autoplay preload="metadata"></video>
+    <div  class="row">
+      <div style="position: relative; left: 200px; top: -150px" class="col-md-4">
+        <div  aling="center">
+        <video width="600" height="400" id="video" controls muted autoplay preload="metadata"></video>
         </div>
 
 
@@ -60,7 +53,7 @@ define("MAX_RESULTS", 15);
   </div>                      
 </div>
 
-<br>
+
 
 
 <form id="keywordForm" method="post" action="">
@@ -72,6 +65,7 @@ define("MAX_RESULTS", 15);
           </div>
           <div class="col-auto">
             <input class="btn btn-primary mb-2" type="submit" name="submit" value="Busqueda">
+            <input class="btn btn-primary mb-2" type="submit" name="submit" value="Cancelar">
           </div>
         </div>
       </div>

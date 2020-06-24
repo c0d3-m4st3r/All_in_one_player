@@ -30,32 +30,39 @@ define("MAX_RESULTS", 15);
 	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 	<title>All_in_one_player</title>
     <style type="text/css">
-	html,body{height:100vh; background:#d9d9d9; }
+	html,body{ background:#d9d9d9; }
   </style>
   
 </head>
 <body>
 
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
-			<img src="" width="300" alt="">
+			<img src="" width="300" height="300" alt="">
 		</div>
 	</div>
     <div class="row">
-    	<div class="col-md-6">
+    	<div   class="col-md-4">
     		<div align="center"><img id="img-album" src="img/music.png" width="270" alt=""></div>
-    		<div align="center"><audio id="player" controls=""></audio></div>
+    		<div><audio id="player" controls></audio></div>
 		</div>
-		<div class="col-md-6">
+		<div style="position: relative; left: 200px" class="col-md-6">
 			<button class="btn btn-success" id="shuffle"><i class="fa fa-random"></i></button>
 			<ul class="list-group" id="playlist"></ul>
-			<canvas id="canvas"></canvas>
+			<div >
+            <canvas id="canvas"></canvas>
+            </div>
+			
 		</div>
 	</div>
-	
+	</div>
 
 
+
+
+<div style="position: relative; top: 200px">
 
 <form id="keywordForm" method="post" action="">
       <div class="form-row align-items-center">
@@ -70,7 +77,7 @@ define("MAX_RESULTS", 15);
           </div>
         </div>
       </div>
-      </div>
+      
     </form>
     <?php 
     if(!empty($response)) { ?>
@@ -118,13 +125,7 @@ define("MAX_RESULTS", 15);
       </div>
               <?php 
                     }
-                }else{
-
-
-                 $_POST['submit']="";
-                 $keyword="";
-
-                } 
+                }
            
             }
             ?>
@@ -136,8 +137,10 @@ define("MAX_RESULTS", 15);
 </div>
 
 
+</div>
 
 
+</div>
 
 
 
